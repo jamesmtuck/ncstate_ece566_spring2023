@@ -1,6 +1,0 @@
-/Users/jtuck/git/ncstate_ece566_spring2022/projects/p0/cmake-build-debug-localllvm/CMakeFiles/edit_cache.dir
-/Users/jtuck/git/ncstate_ece566_spring2022/projects/p0/cmake-build-debug-localllvm/CMakeFiles/acc_gen.dir
-/Users/jtuck/git/ncstate_ece566_spring2022/projects/p0/cmake-build-debug-localllvm/CMakeFiles/omp_gen.dir
-/Users/jtuck/git/ncstate_ece566_spring2022/projects/p0/cmake-build-debug-localllvm/CMakeFiles/p0.dir
-/Users/jtuck/git/ncstate_ece566_spring2022/projects/p0/cmake-build-debug-localllvm/CMakeFiles/rebuild_cache.dir
-/Users/jtuck/git/ncstate_ece566_spring2022/projects/p0/cmake-build-debug-localllvm/CMakeFiles/intrinsics_gen.dir

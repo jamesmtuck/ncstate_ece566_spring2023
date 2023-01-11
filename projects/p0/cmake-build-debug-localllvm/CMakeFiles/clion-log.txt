@@ -1,4 +1,0 @@
-/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=/usr/local/opt/llvm/bin/clang -DCMAKE_CXX_COMPILER=/usr/local/opt/llvm/bin/clang++ -DLLVM_DIR=/usr/local/opt/llvm/lib/cmake/llvm -G "CodeBlocks - Unix Makefiles" /Users/jtuck/git/ncstate_ece566_spring2022/projects/p0
--- Configuring done
--- Generating done
--- Build files have been written to: /Users/jtuck/git/ncstate_ece566_spring2022/projects/p0/cmake-build-debug-localllvm
