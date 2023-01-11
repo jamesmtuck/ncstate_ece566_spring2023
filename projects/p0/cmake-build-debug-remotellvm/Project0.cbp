@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="Project0"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="clang"/>
+		<Option virtualFolders="CMake Files\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\usr\;CMake Files\..\..\usr\lib\;CMake Files\..\..\usr\lib\llvm-13\;CMake Files\..\..\usr\lib\llvm-13\cmake\;CMake Files\..\..\usr\lib\llvm-13\lib\;CMake Files\..\..\usr\lib\llvm-13\lib\cmake\;CMake Files\..\..\usr\lib\llvm-13\lib\cmake\llvm\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/tmp/tmp.kON55rKeH0/cmake-build-debug-remotellvm"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j2 -f &quot;/tmp/tmp.kON55rKeH0/cmake-build-debug-remotellvm/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/gmake -j2 -f &quot;/tmp/tmp.kON55rKeH0/cmake-build-debug-remotellvm/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j2 -f &quot;/tmp/tmp.kON55rKeH0/cmake-build-debug-remotellvm/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j2 -f &quot;/tmp/tmp.kON55rKeH0/cmake-build-debug-remotellvm/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/tmp/tmp.kON55rKeH0/cmake-build-debug-remotellvm"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j2 -f &quot;/tmp/tmp.kON55rKeH0/cmake-build-debug-remotellvm/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/gmake -j2 -f &quot;/tmp/tmp.kON55rKeH0/cmake-build-debug-remotellvm/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j2 -f &quot;/tmp/tmp.kON55rKeH0/cmake-build-debug-remotellvm/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j2 -f &quot;/tmp/tmp.kON55rKeH0/cmake-build-debug-remotellvm/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="p0">
+				<Option output="/tmp/tmp.kON55rKeH0/cmake-build-debug-remotellvm/p0" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/tmp/tmp.kON55rKeH0/cmake-build-debug-remotellvm"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="clang"/>
+				<Compiler>
+					<Add directory="/usr/lib/llvm-13/include"/>
+					<Add directory="/usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11"/>
+					<Add directory="/usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/backward"/>
+					<Add directory="/usr/lib/llvm-13/lib/clang/13.0.0/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j2 -f &quot;/tmp/tmp.kON55rKeH0/cmake-build-debug-remotellvm/Makefile&quot;  VERBOSE=1 p0"/>
+					<CompileFile command="/usr/bin/gmake -j2 -f &quot;/tmp/tmp.kON55rKeH0/cmake-build-debug-remotellvm/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j2 -f &quot;/tmp/tmp.kON55rKeH0/cmake-build-debug-remotellvm/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j2 -f &quot;/tmp/tmp.kON55rKeH0/cmake-build-debug-remotellvm/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="p0/fast">
+				<Option output="/tmp/tmp.kON55rKeH0/cmake-build-debug-remotellvm/p0" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/tmp/tmp.kON55rKeH0/cmake-build-debug-remotellvm"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="clang"/>
+				<Compiler>
+					<Add directory="/usr/lib/llvm-13/include"/>
+					<Add directory="/usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11"/>
+					<Add directory="/usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/backward"/>
+					<Add directory="/usr/lib/llvm-13/lib/clang/13.0.0/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j2 -f &quot;/tmp/tmp.kON55rKeH0/cmake-build-debug-remotellvm/Makefile&quot;  VERBOSE=1 p0/fast"/>
+					<CompileFile command="/usr/bin/gmake -j2 -f &quot;/tmp/tmp.kON55rKeH0/cmake-build-debug-remotellvm/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j2 -f &quot;/tmp/tmp.kON55rKeH0/cmake-build-debug-remotellvm/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j2 -f &quot;/tmp/tmp.kON55rKeH0/cmake-build-debug-remotellvm/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="acc_gen">
+				<Option working_dir="/tmp/tmp.kON55rKeH0/cmake-build-debug-remotellvm"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j2 -f &quot;/tmp/tmp.kON55rKeH0/cmake-build-debug-remotellvm/Makefile&quot;  VERBOSE=1 acc_gen"/>
+					<CompileFile command="/usr/bin/gmake -j2 -f &quot;/tmp/tmp.kON55rKeH0/cmake-build-debug-remotellvm/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j2 -f &quot;/tmp/tmp.kON55rKeH0/cmake-build-debug-remotellvm/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j2 -f &quot;/tmp/tmp.kON55rKeH0/cmake-build-debug-remotellvm/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/tmp/tmp.kON55rKeH0/cmake-build-debug-remotellvm"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j2 -f &quot;/tmp/tmp.kON55rKeH0/cmake-build-debug-remotellvm/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/gmake -j2 -f &quot;/tmp/tmp.kON55rKeH0/cmake-build-debug-remotellvm/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j2 -f &quot;/tmp/tmp.kON55rKeH0/cmake-build-debug-remotellvm/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j2 -f &quot;/tmp/tmp.kON55rKeH0/cmake-build-debug-remotellvm/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="omp_gen">
+				<Option working_dir="/tmp/tmp.kON55rKeH0/cmake-build-debug-remotellvm"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j2 -f &quot;/tmp/tmp.kON55rKeH0/cmake-build-debug-remotellvm/Makefile&quot;  VERBOSE=1 omp_gen"/>
+					<CompileFile command="/usr/bin/gmake -j2 -f &quot;/tmp/tmp.kON55rKeH0/cmake-build-debug-remotellvm/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j2 -f &quot;/tmp/tmp.kON55rKeH0/cmake-build-debug-remotellvm/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j2 -f &quot;/tmp/tmp.kON55rKeH0/cmake-build-debug-remotellvm/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="intrinsics_gen">
+				<Option working_dir="/tmp/tmp.kON55rKeH0/cmake-build-debug-remotellvm"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j2 -f &quot;/tmp/tmp.kON55rKeH0/cmake-build-debug-remotellvm/Makefile&quot;  VERBOSE=1 intrinsics_gen"/>
+					<CompileFile command="/usr/bin/gmake -j2 -f &quot;/tmp/tmp.kON55rKeH0/cmake-build-debug-remotellvm/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j2 -f &quot;/tmp/tmp.kON55rKeH0/cmake-build-debug-remotellvm/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j2 -f &quot;/tmp/tmp.kON55rKeH0/cmake-build-debug-remotellvm/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/tmp/tmp.kON55rKeH0/p0.cpp">
+			<Option target="p0"/>
+		</Unit>
+		<Unit filename="/tmp/tmp.kON55rKeH0/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/tmp/tmp.kON55rKeH0/../../usr/lib/llvm-13/cmake/LLVMConfig.cmake">
+			<Option virtualFolder="CMake Files\..\..\usr\lib\llvm-13\cmake\"/>
+		</Unit>
+		<Unit filename="/tmp/tmp.kON55rKeH0/../../usr/lib/llvm-13/cmake/LLVMConfigVersion.cmake">
+			<Option virtualFolder="CMake Files\..\..\usr\lib\llvm-13\cmake\"/>
+		</Unit>
+		<Unit filename="/tmp/tmp.kON55rKeH0/../../usr/lib/llvm-13/lib/cmake/llvm/AddLLVM.cmake">
+			<Option virtualFolder="CMake Files\..\..\usr\lib\llvm-13\lib\cmake\llvm\"/>
+		</Unit>
+		<Unit filename="/tmp/tmp.kON55rKeH0/../../usr/lib/llvm-13/lib/cmake/llvm/DetermineGCCCompatible.cmake">
+			<Option virtualFolder="CMake Files\..\..\usr\lib\llvm-13\lib\cmake\llvm\"/>
+		</Unit>
+		<Unit filename="/tmp/tmp.kON55rKeH0/../../usr/lib/llvm-13/lib/cmake/llvm/LLVM-Config.cmake">
+			<Option virtualFolder="CMake Files\..\..\usr\lib\llvm-13\lib\cmake\llvm\"/>
+		</Unit>
+		<Unit filename="/tmp/tmp.kON55rKeH0/../../usr/lib/llvm-13/lib/cmake/llvm/LLVMDistributionSupport.cmake">
+			<Option virtualFolder="CMake Files\..\..\usr\lib\llvm-13\lib\cmake\llvm\"/>
+		</Unit>
+		<Unit filename="/tmp/tmp.kON55rKeH0/../../usr/lib/llvm-13/lib/cmake/llvm/LLVMExports-relwithdebinfo.cmake">
+			<Option virtualFolder="CMake Files\..\..\usr\lib\llvm-13\lib\cmake\llvm\"/>
+		</Unit>
+		<Unit filename="/tmp/tmp.kON55rKeH0/../../usr/lib/llvm-13/lib/cmake/llvm/LLVMExports.cmake">
+			<Option virtualFolder="CMake Files\..\..\usr\lib\llvm-13\lib\cmake\llvm\"/>
+		</Unit>
+		<Unit filename="/tmp/tmp.kON55rKeH0/../../usr/lib/llvm-13/lib/cmake/llvm/LLVMProcessSources.cmake">
+			<Option virtualFolder="CMake Files\..\..\usr\lib\llvm-13\lib\cmake\llvm\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

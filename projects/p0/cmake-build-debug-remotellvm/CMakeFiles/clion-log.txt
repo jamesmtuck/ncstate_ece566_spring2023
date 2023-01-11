@@ -1,0 +1,4 @@
+/usr/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=clang-13 -DCMAKE_CXX_COMPILER=clang++-13 -DLLVM_DIR=/usr/lib/llvm-13/cmake/ -G "CodeBlocks - Unix Makefiles" /tmp/tmp.kON55rKeH0
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /tmp/tmp.kON55rKeH0/cmake-build-debug-remotellvm
