@@ -15,7 +15,8 @@ for fName in sys.argv[1:]:
         s = line.split(',')
         results[s[0]] += int(s[1])
 
-print "Total  = %d" % results['total']
-print "Success= %04d / %d" % (results['success'],results['total'])
-print "Errors = %04d / %d" % (results['errors'],results['total'])
-print "Rate   = %d%%" % (results['success']*100/results['total'])
+print("Total  = %d" % results['total'])
+print("Success= %04d / %d" % (results['success'],results['total']))
+print("Errors = %04d / %d" % (results['errors'],results['total']))
+if results['total'] > 0:
+    print("Rate   = %d%%" % (results['success']*100/results['total']))

@@ -19,9 +19,9 @@
             <mapping deploy="/tmp/tmp.kON55rKeH0" local="$PROJECT_DIR$" />
           </mappings>
           <excludedPaths>
-            <excludedPath local="true" path="$PROJECT_DIR$/cmake-build-debug" />
-            <excludedPath local="true" path="$PROJECT_DIR$/cmake-build-debug-localllvm" />
             <excludedPath local="true" path="$PROJECT_DIR$/cmake-build-debug-remotellvm" />
+            <excludedPath local="true" path="$PROJECT_DIR$/cmake-build-debug-localllvm" />
+            <excludedPath local="true" path="$PROJECT_DIR$/cmake-build-debug" />
           </excludedPaths>
         </serverdata>
       </paths>

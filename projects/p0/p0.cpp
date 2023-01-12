@@ -42,7 +42,8 @@ using namespace llvm;
 
 int Summarize(Module *M)
 {
-  return 0;
+    fprintf(stderr,"Hello!\n");
+    return 0;
 }
 
 int

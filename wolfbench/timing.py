@@ -30,7 +30,7 @@ for fName in timings:
     try: 
         f = open(fName,"r")
     except:
-        print "Error: could not find file %s" % fName
+        print(("Error: could not find file %s" % fName))
         sys.exit(1)
 
     m = p_name.match(fName)
@@ -48,10 +48,10 @@ for fName in timings:
 
     Ids[name] = 1
     
-    if not Stats.has_key(opt):
+    if opt not in Stats:
         Stats[opt] = {}
 
-    if not Stats[opt].has_key(name):
+    if name not in Stats[opt]:
         Stats[opt][name] = 0
 
     for line in iter(f.readline, ''):
@@ -65,21 +65,21 @@ for fName in timings:
 
 
 s = "Category".ljust(20,)
-keys = Stats.keys()
-keys.sort(cmp)
+keys = list(Stats.keys())
+keys.sort()
 for k in keys:
     s += k.rjust(10)
 
-print s
+print(s)
 
-benchs = Ids.keys()
+benchs = list(Ids.keys())
 benchs.sort()
 
 for i in benchs:
     s = str(i).ljust(20,'.')
     for k in keys:
-        if Stats[k].has_key(i):
-            if Normalize==True and Stats.has_key(Normalize_key) :
+        if i in Stats[k]:
+            if Normalize==True and Normalize_key in Stats :
                 if Stats['.None'][i] > 0:
                     s += str(Stats[k][i]/Stats[Normalize_key][i])[0:3].rjust(10,'.')
                 else:
@@ -88,4 +88,4 @@ for i in benchs:
                 s += str(Stats[k][i]).rjust(10,'.')
         else:
             s += '(missing)'.rjust(10,'.')
-    print s
+    print(s)
