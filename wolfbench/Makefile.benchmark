@@ -28,8 +28,7 @@ endif
 	@echo [built $(EXE)]
 else
 ifdef CLANG
-	@$(LLC) -O2 -o $(addsuffix .s,$@) $(addsuffix .prof.bc,$@)
-	@$(CLANG) $(LIBS) $(HEADERS) -o $@ $(addsuffix .s,$@) -lm
+	$(CLANG) $(LIBS) $(HEADERS) -o $@ -lm $<
 else
 	@$(LLC) -o $(addsuffix .s,$@) $(addsuffix .prof.bc,$@)
 	@$(GCC) $(LIBS) $(HEADERS) -o $@ $(addsuffix .s,$@) -lm
