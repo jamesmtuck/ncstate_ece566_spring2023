@@ -28,19 +28,27 @@ std::string format( const std::string& format, Args ... args )
     return std::string( buf.get(), buf.get() + size - 1 ); // We don't want the '\0' inside
 }
 
- 
+ int getReg() {
+   static int cnt = 8;
+   return cnt++;
+ }
+
 %}
 
 // Make the output verbose
 %verbose
 %define parse.trace
 
+%union {
+  int reg;
+  int imm;
+}
 
-%token REG
-%token IMMEDIATE
+%token <reg> REG
+%token <imm> IMMEDIATE
 %token ASSIGN SEMI PLUS MINUS LPAREN RPAREN LBRACKET RBRACKET
 
-%type  expr
+%type  <reg> expr
 
 %left  PLUS MINUS
 
@@ -48,37 +56,51 @@ std::string format( const std::string& format, Args ... args )
 
 program:   REG ASSIGN expr SEMI
 {
+  printf("ADD R%d, R%d, 0\n", $1,  $3);
   return 0; // if we get here, we succeeded!
 }
 ;
 
 expr: IMMEDIATE
 {
-
+  int reg = getReg();
+  printf("AND R%d, R%d, 0\n", reg, reg);
+  printf("ADD R%d, R%d, %d\n", reg, reg, $1);
+  $$ = reg;
 }
 | REG
 { 
-
+  //printf("expr: REG (%d)\n", $1);
+  $$ = $1;
 }
 | expr PLUS expr
 {
-
+  //printf("expr: expr PLUS expr\n");
+  int reg = getReg();
+  printf("ADD R%d, R%d, R%d\n", reg, $1, $3);
+  $$ = reg;
 }
 | expr MINUS expr
 {
-
+  int reg = getReg();
+  printf("SUB R%d, R%d, R%d\n", reg, $1, $3);
+  $$ = reg;
 }
 | LPAREN expr RPAREN
 {
-
+  $$ = $2;
 }
 | MINUS expr
 {
-
+  int reg = getReg();
+  printf("NOT R%d, R%d\n", reg, $2);
+  printf("ADD R%d, R%d, 1\n", reg, reg);
 }
 | LBRACKET expr RBRACKET
 {
-
+  int reg = getReg();
+  printf("LDR R%d, R%d, 0\n", reg, $2);
+  $$ = reg;
 }
 ;
 
