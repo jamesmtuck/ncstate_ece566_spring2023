@@ -2,6 +2,12 @@
 #include <stdio.h>
 #include <iostream>
 #include <math.h>
+
+  struct reg_or_imm {
+   bool is_reg;
+   int  val;
+ };
+  
 #include "expr.y.hpp"
 %}
 

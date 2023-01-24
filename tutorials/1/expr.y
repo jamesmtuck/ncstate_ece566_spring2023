@@ -33,22 +33,29 @@ std::string format( const std::string& format, Args ... args )
    return cnt++;
  }
 
+ struct reg_or_imm {
+   bool is_reg;
+   int  val;
+ };
+   
 %}
 
 // Make the output verbose
 %verbose
 %define parse.trace
 
+
 %union {
   int reg;
   int imm;
+  struct reg_or_imm e;
 }
 
 %token <reg> REG
 %token <imm> IMMEDIATE
 %token ASSIGN SEMI PLUS MINUS LPAREN RPAREN LBRACKET RBRACKET
 
-%type  <reg> expr
+%type  <e> expr
 
 %left  PLUS MINUS
 
@@ -56,35 +63,56 @@ std::string format( const std::string& format, Args ... args )
 
 program:   REG ASSIGN expr SEMI
 {
-  printf("ADD R%d, R%d, 0\n", $1,  $3);
+  if ($3.is_reg)
+    printf("ADD R%d, R%d, 0\n", $1,  $3);
+  else
+    printf("ADD R%d, %d, 0\n", $1,  $3);
+    
   return 0; // if we get here, we succeeded!
 }
 ;
 
 expr: IMMEDIATE
 {
-  int reg = getReg();
-  printf("AND R%d, R%d, 0\n", reg, reg);
-  printf("ADD R%d, R%d, %d\n", reg, reg, $1);
-  $$ = reg;
+  //int reg = getReg();
+  //printf("AND R%d, R%d, 0\n", reg, reg);
+  //printf("ADD R%d, R%d, %d\n", reg, reg, $1);
+  $$.is_reg = false;
+  $$.val = $1;
 }
 | REG
 { 
   //printf("expr: REG (%d)\n", $1);
-  $$ = $1;
+  $$.is_reg = true;
+  $$.val = $1;
 }
 | expr PLUS expr
 {
-  //printf("expr: expr PLUS expr\n");
-  int reg = getReg();
-  printf("ADD R%d, R%d, R%d\n", reg, $1, $3);
-  $$ = reg;
+  if( $1.is_reg && $3.is_reg ) {
+    int reg = getReg();
+    printf("ADD R%d, R%d, R%d\n", reg, $1.val, $3.val);
+    $$.is_reg = true;
+    $$.val = reg;
+  } else if (!$1.is_reg && !$3.is_reg) {
+    $$.is_reg = false;
+    $$.val = $1.val + $3.val;
+  } else if ($1.is_reg && !$3.is_reg) {
+    int reg = getReg();
+    printf("ADD R%d, R%d, %d\n", reg, $1.val, $3.val);
+    $$.is_reg = true;
+    $$.val = reg;
+  } else if (!$1.is_reg && $3.is_reg) {
+    int reg = getReg();
+    printf("ADD R%d, R%d, %d\n", reg, $3.val, $1.val);
+    $$.is_reg = true;
+    $$.val = reg;
+  }  
 }
 | expr MINUS expr
 {
-  int reg = getReg();
-  printf("SUB R%d, R%d, R%d\n", reg, $1, $3);
-  $$ = reg;
+  //int reg = getReg();
+  //printf("SUB R%d, R%d, R%d\n", reg, $1, $3);
+  //$$ = reg;
 }
 | LPAREN expr RPAREN
 {
@@ -93,14 +121,14 @@ expr: IMMEDIATE
 | MINUS expr
 {
   int reg = getReg();
-  printf("NOT R%d, R%d\n", reg, $2);
-  printf("ADD R%d, R%d, 1\n", reg, reg);
+  //printf("NOT R%d, R%d\n", reg, $2);
+  //printf("ADD R%d, R%d, 1\n", reg, reg);
 }
 | LBRACKET expr RBRACKET
 {
   int reg = getReg();
-  printf("LDR R%d, R%d, 0\n", reg, $2);
-  $$ = reg;
+  //printf("LDR R%d, R%d, 0\n", reg, $2);
+  //$$ = reg;
 }
 ;
 

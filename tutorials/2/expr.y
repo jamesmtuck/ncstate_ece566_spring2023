@@ -7,6 +7,23 @@
 #include <memory>
 #include <stdexcept>
 
+#include "llvm/IR/LLVMContext.h"
+#include "llvm/IR/Value.h"
+#include "llvm/IR/Function.h"
+#include "llvm/IR/Type.h"
+#include "llvm/IR/IRBuilder.h"
+
+#include "llvm/Bitcode/BitcodeReader.h"
+#include "llvm/Bitcode/BitcodeWriter.h"
+#include "llvm/Support/SystemUtils.h"
+#include "llvm/Support/ToolOutputFile.h"
+#include "llvm/Support/FileSystem.h"
+
+using namespace llvm;
+
+static LLVMContext TheContext;
+static IRBuilder<> Builder(TheContext);
+
 
 extern FILE *yyin;
 int yylex();
@@ -33,6 +50,7 @@ int getReg() {
   return cnt++;
 }
 
+ Value *regs[8] = {nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr};
 
 %}
 
@@ -42,10 +60,11 @@ int getReg() {
 %union {
   int reg;
   int imm;
+  Value *val;
 }
 // Put this after %union and %token directives
 
-%type <reg> expr
+%type <val> expr
 %token <reg> REG
 %token <imm> IMMEDIATE
 %token RETURN ASSIGN SEMI PLUS MINUS LPAREN RPAREN LBRACKET RBRACKET
@@ -54,50 +73,40 @@ int getReg() {
 
 %left  PLUS MINUS
 
-
-
 %%
 
 program:   REG ASSIGN expr SEMI
 {
-  printf("ADD R%d, R%d, 0\n", $1,  $3);
+  regs[$1] = $3;
 }
 | program REG ASSIGN expr SEMI
 { 
-  // add action
+  regs[$2] = $4;
 }
-| program RETURN REG SEMI
+| program RETURN expr SEMI
 {
   // add action
+  //printf("RET R%d\n", $3);
+  Builder.CreateRet($3);
   return 0; /* program is done */
 }
-
 ;
 
 expr: IMMEDIATE
 {
-  int reg = getReg();
-  printf("AND R%d, R%d, 0\n", reg, reg);
-  printf("ADD R%d, R%d, %d\n", reg, reg, $1);
-  $$ = reg;
+  $$ = Builder.getInt32($1);
 }
 | REG
 { 
-  //printf("expr: REG (%d)\n", $1);
-  $$ = $1;
+  $$ = regs[$1];
 }
 | expr PLUS expr
 {
-  //printf("expr: expr PLUS expr\n");
-  int reg = getReg();
-  printf("ADD R%d, R%d, R%d\n", reg, $1, $3);
-  $$ = reg;
+  $$ = Builder.CreateAdd($1, $3, "add");
 }
 | expr MINUS expr
 {
-  int reg = getReg();
-  printf("SUB R%d, R%d, R%d\n", reg, $1, $3);
-  $$ = reg;
+  $$ = Builder.CreateSub($1, $3, "sub");
 }
 | LPAREN expr RPAREN
 {
@@ -105,15 +114,15 @@ expr: IMMEDIATE
 }
 | MINUS expr
 {
-  int reg = getReg();
-  printf("NOT R%d, R%d\n", reg, $2);
-  printf("ADD R%d, R%d, 1\n", reg, reg);
+  $$ = Builder.CreateNeg($2, "neg");
 }
 | LBRACKET expr RBRACKET
 {
-  int reg = getReg();
-  printf("LDR R%d, R%d, 0\n", reg, $2);
-  $$ = reg;
+  $$ = Builder.CreateLoad(Builder.getInt32Ty(),$2);
+
+  //int reg = getReg();
+  //printf("LDR R%d, R%d, 0\n", reg, $2);
+  //$$ = reg;
 }
 ;
 
@@ -128,7 +137,38 @@ int main(int argc, char *argv[])
 {
   yydebug = 0;
   yyin = stdin; // get input from screen
-  yyparse();
+
+  // Make Module
+  Module *M = new Module("Tutorial2", TheContext);
+  
+  // Create void function type with no arguments
+  FunctionType *FunType = 
+    FunctionType::get(Builder.getInt32Ty(),false);
+  
+  // Create a main function
+  Function *Function = Function::Create(FunType,  
+					GlobalValue::ExternalLinkage, "main",M);
+  
+  //Add a basic block to main to hold instructions
+  BasicBlock *BB = BasicBlock::Create(TheContext, "entry",
+				      Function);
+  // Ask builder to place new instructions at end of the
+  // basic block
+  Builder.SetInsertPoint(BB);
+
+  for(int i=0; i<8; i++)
+    regs[i] = Builder.getInt32(0);
+  
+  // Now we’re ready to make IR, call yyparse()
+
+  if (yyparse()==0) {
+    std::error_code EC;
+    raw_fd_ostream OS("main.bc",EC,sys::fs::OF_None);
+    WriteBitcodeToFile(*M,OS);
+
+    // Dump LLVM IR to the screen for debugging                                                                                                
+    M->print(errs(),nullptr,false,true);
+  }
   
   return 0;
 }
