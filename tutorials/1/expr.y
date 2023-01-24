@@ -64,10 +64,11 @@ std::string format( const std::string& format, Args ... args )
 program:   REG ASSIGN expr SEMI
 {
   if ($3.is_reg)
-    printf("ADD R%d, R%d, 0\n", $1,  $3);
-  else
-    printf("ADD R%d, %d, 0\n", $1,  $3);
-    
+    printf("ADD R%d, R%d, 0\n", $1,  $3.val);
+  else {
+    printf("AND R%d, R%d, 0\n", $1, $1);
+    printf("ADD R%d, R%d, %d\n", $1, $1, $3.val);
+  }
   return 0; // if we get here, we succeeded!
 }
 ;
@@ -110,9 +111,27 @@ expr: IMMEDIATE
 }
 | expr MINUS expr
 {
-  //int reg = getReg();
-  //printf("SUB R%d, R%d, R%d\n", reg, $1, $3);
-  //$$ = reg;
+  if( $1.is_reg && $3.is_reg ) {
+    int reg = getReg();
+    printf("SUB R%d, R%d, R%d\n", reg, $1.val, $3.val);
+    $$.is_reg = true;
+    $$.val = reg;
+  } else if (!$1.is_reg && !$3.is_reg) {
+    $$.is_reg = false;
+    $$.val = $1.val - $3.val;
+  } else if ($1.is_reg && !$3.is_reg) {
+    int reg = getReg();
+    printf("SUB R%d, R%d, %d\n", reg, $1.val, $3.val);
+    $$.is_reg = true;
+    $$.val = reg;
+  } else if (!$1.is_reg && $3.is_reg) {
+    int reg = getReg();
+    printf("NOT R%d, %d\n",reg,$1.val);
+    printf("ADD R%d, R%d, 1\n",reg, reg);
+    printf("ADD R%d, R%d, R%d\n", reg, reg, $3.val);
+    $$.is_reg = true;
+    $$.val = reg;
+  }
 }
 | LPAREN expr RPAREN
 {
@@ -120,15 +139,24 @@ expr: IMMEDIATE
 }
 | MINUS expr
 {
-  int reg = getReg();
-  //printf("NOT R%d, R%d\n", reg, $2);
-  //printf("ADD R%d, R%d, 1\n", reg, reg);
+  if ($2.is_reg) {
+    int reg = getReg();
+    printf("NOT R%d, R%d\n", reg, $2);
+    printf("ADD R%d, R%d, 1\n", reg, reg);
+  } else {
+    $$ = $2;
+    $$.val = -$$.val;
+  }
 }
 | LBRACKET expr RBRACKET
 {
   int reg = getReg();
-  //printf("LDR R%d, R%d, 0\n", reg, $2);
-  //$$ = reg;
+  if (!$2.is_reg) {
+    printf("AND R%d, R%d, 0\n", reg, reg);
+    printf("LDR R%d, R%d, %d\n", reg, reg, $2.val);    
+  } else {
+    printf("LDR R%d, R%d, 0\n", reg, $2.val);
+  }
 }
 ;
 
