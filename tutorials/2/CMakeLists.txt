@@ -27,4 +27,4 @@ SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-deprecated-register")
 include_directories(.)
 
 add_executable(t2 ${BISON_Parser_OUTPUTS} ${FLEX_Scanner_OUTPUTS})
-target_link_libraries(t2 y l ${llvm_libs})
+target_link_libraries(t2 ${llvm_libs})
