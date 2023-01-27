@@ -17,4 +17,6 @@ jobs:
     - name: Build the Docker image
       run: docker-compose build
     - name: Traverse and build tutorial starters with make
-      run: for d in tutorials/* ; do make -C $d && make clean -C $d; done
+      run: for d in tutorials/* ; do echo $d && make -C $d && make clean -C $d; done
+    - name: Traverse and build tutorial starters with CMake
+      run: for d in tutorials/* ; do echo $d && cd $d && mkdir build && cd build && cmake .. && make && cd .. && rm -rf build && cd ../..; done
