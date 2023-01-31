@@ -118,7 +118,7 @@ expr: IMMEDIATE
 }
 | LBRACKET expr RBRACKET
 {
-  $$ = Builder.CreateLoad(Builder.getInt32Ty(),$2);
+  $$ = Builder.CreateLoad(Builder.getInt32Ty(),$2,"load");
 
   //int reg = getReg();
   //printf("LDR R%d, R%d, 0\n", reg, $2);
@@ -140,7 +140,7 @@ int main(int argc, char *argv[])
 
   // Make Module
   Module *M = new Module("Tutorial2", TheContext);
-  
+
   // Create void function type with no arguments
   FunctionType *FunType = 
     FunctionType::get(Builder.getInt32Ty(),false);
