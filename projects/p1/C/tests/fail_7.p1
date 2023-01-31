@@ -1,0 +1,7 @@
+fail_7() {
+  m1 = matrix [2 x 2] { [0,0],[0,0] };
+  m2 = matrix [3 x 2] { [0,0], [0,0], [0,0] };
+  // illegal index into matrix
+  m3 = m1 * m2;
+  return reduce(m3);
+}

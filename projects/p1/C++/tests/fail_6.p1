@@ -1,0 +1,5 @@
+fail_6() {
+  m = matrx [2 x 2] { [0,0],[0,0] };
+  // illegal index into matrix
+  return m[2,2];
+}

@@ -1,0 +1,10 @@
+
+test_11(a,b,c,d) {
+  m1 = matrix [2 x 2] { [a,b], [c,d] };
+  de = det (m1);
+  m2 = matrix [2 x 2] { [d / de, -b/de], [ -c/de, a / de ] };
+  m3 = m1 * m2;
+  tmp = reduce(m3);
+  //return reduce(m1);
+  return tmp;
+}

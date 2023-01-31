@@ -1,0 +1,6 @@
+test_add(a,b,c,d){
+  m1 = matrix [2 x 2] {[a,b],[c,d]};
+  m2 = matrix [2 x 2] {[a,2],[3,3]};
+  m3 = m1 + m2;
+  return m3[0,0] + m3[1,1];
+}
