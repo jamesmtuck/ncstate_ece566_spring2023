@@ -1,0 +1,5 @@
+test_9(a,b,c,d) {
+  m1 = matrix [2 x 2] { [a,b], [c,d] };
+  d = det (m1);
+  return d; 
+}

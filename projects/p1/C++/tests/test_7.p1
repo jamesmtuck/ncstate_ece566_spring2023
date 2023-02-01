@@ -1,0 +1,5 @@
+test_7(a,b,c,d) {
+  m = matrix [2 x 2] { [a,b], [c,d] };
+  return m[1,1];
+}
+

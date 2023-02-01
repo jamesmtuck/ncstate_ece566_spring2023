@@ -1,0 +1,6 @@
+test_10(a,b,c,d,e,f,h,i,j) {
+  m1 = matrix [3 x 3] { [a,b,c], [d,e,f], [h,i,j] };
+  d = det (m1);
+  return d; 
+}
+

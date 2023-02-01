@@ -1,0 +1,5 @@
+test_4(a) {
+  b = 1 / a;
+  return b;
+}
+

@@ -1,0 +1,6 @@
+test_12() {
+  m1 = matrix [3 x 3] { [1,0,0], [0,1,0], [0,0,1] };
+  d = det (m1);
+  m2 = transpose(m1) / d;
+  return reduce(m2); 
+}

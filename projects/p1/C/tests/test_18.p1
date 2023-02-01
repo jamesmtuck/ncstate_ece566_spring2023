@@ -1,0 +1,8 @@
+test_18(a,b,c,d,e,f,g,h,i) {
+  m = matrix [3 x 3] { [a,b,c], [d,e,f], [a,b,c] };
+  m2 = m*3;
+  m2 = m2 - m*3;
+  m2 = m2 + m*3;
+  m2 = m2 - m*3;
+  return reduce(m2);
+}

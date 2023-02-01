@@ -118,7 +118,10 @@ expr: IMMEDIATE
 }
 | LBRACKET expr RBRACKET
 {
-  $$ = Builder.CreateLoad(Builder.getInt32Ty(),$2);
+  Value * tmp = Builder.CreateIntToPtr($2,   
+                   PointerType::get(Builder.getInt32Ty(),0));
+
+  $$ = Builder.CreateLoad(Builder.getInt32Ty(),tmp,"load");
 
   //int reg = getReg();
   //printf("LDR R%d, R%d, 0\n", reg, $2);
@@ -140,14 +143,16 @@ int main(int argc, char *argv[])
 
   // Make Module
   Module *M = new Module("Tutorial2", TheContext);
+
+  std::vector<Type*> argTypes(8, Builder.getInt32Ty());
   
   // Create void function type with no arguments
   FunctionType *FunType = 
-    FunctionType::get(Builder.getInt32Ty(),false);
+    FunctionType::get(Builder.getInt32Ty(),argTypes,false);
   
   // Create a main function
   Function *Function = Function::Create(FunType,  
-					GlobalValue::ExternalLinkage, "main",M);
+					GlobalValue::ExternalLinkage, "fun",M);
   
   //Add a basic block to main to hold instructions
   BasicBlock *BB = BasicBlock::Create(TheContext, "entry",
@@ -157,7 +162,8 @@ int main(int argc, char *argv[])
   Builder.SetInsertPoint(BB);
 
   for(int i=0; i<8; i++)
-    regs[i] = Builder.getInt32(0);
+    // set regs[i] to point to argument i
+    regs[i] = Function->arg_begin()+i;
   
   // Now we’re ready to make IR, call yyparse()
 
