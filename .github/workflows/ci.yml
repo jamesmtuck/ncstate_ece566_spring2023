@@ -16,3 +16,5 @@ jobs:
       run: docker-compose exec -T ece566 /bin/bash -c 'for d in tutorials/* ; do echo $d && make -C $d && make clean -C $d; done'
     - name: Traverse and build tutorial starters with CMake
       run: docker-compose exec -T ece566 /bin/bash -c 'for d in tutorials/* ; do echo $d && cd $d && mkdir build && cd build && cmake .. && make && cd .. && rm -rf build && cd ../..; done'
+    - name: Traverse and build project starters with CMake
+      run: docker-compose exec -T ece566 /bin/bash -c 'for d in projects/p1/* ; do echo $d && cd $d && mkdir build && cd build && cmake .. && make && cd .. && rm -rf build && cd ../..; done'
