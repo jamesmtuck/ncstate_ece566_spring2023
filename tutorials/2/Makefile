@@ -1,7 +1,7 @@
 .PHONY: all clean
 
-LLVMCONFIG=llvm-config
-CXX = clang++
+LLVMCONFIG=llvm-config-14
+CXX = clang++-14
 CXXFLAGS = -g -Wall -Wno-deprecated-register \
            -Wno-unneeded-internal-declaration \
            -Wno-unused-function

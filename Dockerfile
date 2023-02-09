@@ -54,7 +54,7 @@ RUN ( \
   ) > /etc/ssh/sshd_config_test_clion \
   && mkdir /run/sshd
 
-RUN useradd -m user \
+RUN useradd -s /bin/bash -m user \
   && yes password | passwd user
 
 CMD ["/usr/sbin/sshd", "-D", "-e", "-f", "/etc/ssh/sshd_config_test_clion"]
