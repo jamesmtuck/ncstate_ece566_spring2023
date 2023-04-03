@@ -1,0 +1,27 @@
+FULLSTATS=../../../../../wolfbench/fullstats.py
+TIMING=../../../../../wolfbench/timing.py
+
+
+all:
+	make clean	
+	make EXTRA_SUFFIX=.None CUSTOMFLAGS="-no-inline -no-preopt -no-postopt"  test
+	make EXTRA_SUFFIX=.O CUSTOMFLAGS="-no-inline" test	
+	make EXTRA_SUFFIX=.I CUSTOMFLAGS="-no-preopt -no-postopt"  test	
+	make EXTRA_SUFFIX=.IO test	
+	make EXTRA_SUFFIX=.IOA CUSTOMFLAGS="-inline-require-const-arg" test	
+	make EXTRA_SUFFIX=.IO10 CUSTOMFLAGS="-inline-function-size-limit=10" test	
+	make EXTRA_SUFFIX=.IO50 CUSTOMFLAGS="-inline-function-size-limit=50" test	
+	make EXTRA_SUFFIX=.IO100 CUSTOMFLAGS="-inline-function-size-limit=100" test
+	make EXTRA_SUFFIX=.IOG2 CUSTOMFLAGS="-inline-growth-factor=2" test		
+	make EXTRA_SUFFIX=.IOG4 CUSTOMFLAGS="-inline-growth-factor=4" test		
+
+stats:
+	python3 $(FULLSTATS) Instructions
+	python3 $(FULLSTATS) nInstrPreInline
+	python3 $(FULLSTATS) nInstrAfterInline
+	python3 $(FULLSTATS) Inlined
+	python3 $(FULLSTATS) ConstArg
+	python3 $(FULLSTATS) SizeReq
+	python3 $(TIMING)
+	
+	
