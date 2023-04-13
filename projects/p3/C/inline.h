@@ -8,7 +8,7 @@
 
 LLVM_C_EXTERN_C_BEGIN
 
-void InlineFunction(LLVMValueRef Call);
+LLVMBool InlineFunction(LLVMValueRef Call);
 
 LLVM_C_EXTERN_C_END
 

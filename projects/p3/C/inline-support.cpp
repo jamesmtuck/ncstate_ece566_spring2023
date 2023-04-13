@@ -25,21 +25,28 @@
 
 #include "inline.h"
 #include "llvm/Transforms/Utils/Cloning.h"
+#include "llvm/Analysis/InlineCost.h"
 
 using llvm::InlineFunction;
 using llvm::InlineFunctionInfo;
 using llvm::CallInst;
 using llvm::dyn_cast;
+using llvm::isInlineViable;
 
-
-void InlineFunction(LLVMValueRef Call)
+LLVMBool InlineFunction(LLVMValueRef Call)
 {
   CallInst *CI = dyn_cast<CallInst>(llvm::unwrap(Call));
-  if (CI) {
+  llvm::Function *F = CI->getCalledFunction();
+  if (F) {
     llvm::InlineFunctionInfo IFI;
-    llvm::InlineFunction(*CI, IFI);
-    return ;
+    llvm::InlineResult IR = isInlineViable(*F);
+    if (IR.isSuccess()) {
+      InlineFunction(*CI, IFI);
+      return true;
+    }
   }
+  return false;
 }
+
   
 
